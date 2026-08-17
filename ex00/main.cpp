@@ -1,16 +1,16 @@
 #include "BitcoinExchange.hpp"
-#include <iostraem>
+#include <iostream>
 
 int	main(int argc, char **av)
 {
-	char *ruta = "data.csv"
+	char *ruta = "data.csv";
 	if(argc != 2)
 	{
 		std::cerr << "Error: could not open file.\n";
 		return -1;
 	}
 
-	BitcoinExchage btc;
+	BitcoinExchange btc;
 	try
 	{
 		btc.loadData(ruta);
