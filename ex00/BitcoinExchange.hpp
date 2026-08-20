@@ -4,6 +4,10 @@
 #include <sstream>
 #include <cerrno>
 #include <iostream>
+#include <stdlib.h>
+#include <algorithm> // For std::isspace
+
+std::string trim(const std::string& str);
 
 class BitcoinExchange
 {
@@ -14,8 +18,10 @@ public:
 	~BitcoinExchange();
 	BitcoinExchange(const BitcoinExchange &src);
 	BitcoinExchange	&operator=(const BitcoinExchange &src);
-	void	loadData(char *str);
+	const std::map<std::string, double>	get_data() const;
+	void	loadData(const char *str);
 	void	calculateExchange(char *str);
+	double	get_cotization(std::string fecha);
 };
 
 class ErrorOpenFileException : public std::exception

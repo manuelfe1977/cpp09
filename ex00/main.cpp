@@ -3,7 +3,7 @@
 
 int	main(int argc, char **av)
 {
-	char *ruta = "data.csv";
+	std::string ruta = "data.csv";
 	if(argc != 2)
 	{
 		std::cerr << "Error: could not open file.\n";
@@ -13,7 +13,7 @@ int	main(int argc, char **av)
 	BitcoinExchange btc;
 	try
 	{
-		btc.loadData(ruta);
+		btc.loadData(ruta.c_str());
 		btc.calculateExchange(av[1]);
 	}
 	catch(const std::exception& e)
