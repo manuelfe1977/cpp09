@@ -11,7 +11,6 @@ private:
 	std::stack<int>	_stack;
 	int				res;
 	const char		*exp;
-	void	expresionToList();
 	void	resolveOperator(const char c);
 public:
 	RPN();

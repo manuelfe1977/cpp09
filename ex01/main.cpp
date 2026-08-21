@@ -7,10 +7,11 @@ int	main(int argc, char **av)
 		std::cerr << "One argument in RPN is nedded" << std::endl;
 	else
 	{
-		std::cout << av[1] << std::endl;
+
 		RPN rpn(av[1]);
 		try
 		{
+			//std::cout << av[1] << std::endl;
 			rpn.solveExpresion();
 		}
 		catch(const std::exception& e)

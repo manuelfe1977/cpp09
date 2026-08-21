@@ -14,7 +14,7 @@ RPN::RPN(const char *exp)
 RPN::~RPN()
 {
 }
-RPN	&RPN::operator=(const RPN &src)
+RPN &RPN::operator=(const RPN &src)
 {
 	if (this != &src)
 	{
@@ -30,17 +30,43 @@ RPN::RPN(const RPN &src)
 	*this = src;
 }
 
-int	is_operator(const char c)
+int is_operator(const char c)
 {
-
+	std::string operators = "+-*/";
+	for (int i = 0; i < 4; i++)
+	{
+		if (operators[i] == c)
+			return 1;
+	}
+	return -1;
 }
 
-int	operation(int a, int b, const char c)
+int operation(int a, int b, const char c)
 {
-
+	switch (c)
+	{
+	case '+':
+		return a + b;
+		break;
+	case '-':
+		return a - b;
+		break;
+	case '*':
+		return a * b;
+		break;
+	case '/':
+		if (b == 0)
+			throw ExpresionNotValidException();
+		else
+			return a / b;
+		break;
+	default:
+		throw ExpresionNotValidException();
+		break;
+	}
 }
 
-void	RPN::resolveOperator(const char c)
+void RPN::resolveOperator(const char c)
 {
 	if (_stack.size() > 1)
 	{
@@ -55,13 +81,15 @@ void	RPN::resolveOperator(const char c)
 		throw ExpresionNotValidException();
 }
 
-void	RPN::expresionToList()
+void RPN::solveExpresion()
 {
 	int i = 0;
 
+	if (exp == '\0')
+		throw ExpresionNotValidException();
 	while (exp[i] != '\0')
 	{
-		if (i % 2 == 0)
+		if (i % 2 != 0)
 		{
 			if (exp[i] != ' ')
 				throw ExpresionNotValidException();
@@ -75,20 +103,15 @@ void	RPN::expresionToList()
 			else
 				throw ExpresionNotValidException();
 		}
-
 		i++;
 	}
-}
-
-void	RPN::solveExpresion()
-{
-	if (exp == '\0')
+	if (_stack.size() != 1)
 		throw ExpresionNotValidException();
-
-
+	std::cout << _stack.top() << std::endl;
+	_stack.pop();
 }
 
-const char*	ExpresionNotValidException::what() const throw()
+const char *ExpresionNotValidException::what() const throw()
 {
-		return "The expression is not valid";
+	return "The expression is not valid";
 }
