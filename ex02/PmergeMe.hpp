@@ -13,7 +13,7 @@ public:
 	PmergeMe();
 	~PmergeMe();
 	void	loadArguments(char **arg);
-	void	splitInPairs();
+	template<typename C>	sortFord(C &input);
 	void	printContainer();
 };
 

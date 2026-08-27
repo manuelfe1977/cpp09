@@ -11,7 +11,6 @@ int	main(int argc, char **av)
 		RPN rpn(av[1]);
 		try
 		{
-			//std::cout << av[1] << std::endl;
 			rpn.solveExpresion();
 		}
 		catch(const std::exception& e)
