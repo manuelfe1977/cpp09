@@ -5,6 +5,10 @@
 #include <iostream>
 #include <stdlib.h>
 #include <ctime>
+#include <algorithm>
+#include <iomanip>
+#include <cctype>
+#include <climits>
 
 template<typename C>
 class PmergeMe
@@ -17,6 +21,7 @@ private:
 public:
 	PmergeMe();
 	~PmergeMe();
+	int		size();
 	void	loadArguments(char **arg);
 	void	sortSequence();
 	void	printContainer();
